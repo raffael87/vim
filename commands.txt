@@ -1,0 +1,42 @@
+## TEXT OBJECTS ##
+{operator}a{object}     # with endings (space, dot, colon...)
+{operator}i{object}     # inner 
+ciw                     # change inner word
+daw                     # delete word with space
+dip                     # delete paragraph leaving empty line
+dap                     # delete paragraph with empty line
+ci(                     # change inside ()
+cib                     # change inside ()
+cab                     # change with ()
+ci[
+cit                     # change inner tag ( <bla>inner text</bla>
+ci{ = ciB               # change inner block
+
+
+## SEARCH FILE ##
+/{pattern}      # forward search entire file
+?{pattern}      # backward search entire file
+n               # next find
+N               # previous find
+*               # search for word under cursor
+#               # backwards search for word under cursor
+
+
+## SEARCH LINE ##
+f{char}         # forward search of character
+F{char}         # backward search of character
+t{char}         # forward search one char before
+T{char}         # backward search one char before
+;               # repeat search
+,               # backwards search
+
+
+## SUBSTITUTION ##
+:[range]s/seach_word/substitution/[flags]
+:s/old/new              # changes first occurency in line.
+:s/old/new/g            # changes all occurencies in line.
+:1,5s/old/new/g         # changes all occurencies in lines 1-5.
+:.,$s/old/new/g         # changes all from current line "." to end of file.
+:%s/old/new/g           # changes all lines "%".
+:/SearchPattern1/,/SearchPattern2/s/old/new/g    # make changes between search pattern.
+:s#/home/Documents/#/home/programming#  # subsitutes with /.
