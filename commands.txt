@@ -1,34 +1,44 @@
 ## TEXT OBJECTS ##
 {operator}a{object}     # with endings (space, dot, colon...)
 {operator}i{object}     # inner 
-ciw                     # change inner word
-daw                     # delete word with space
-dip                     # delete paragraph leaving empty line
-dap                     # delete paragraph with empty line
-ci(                     # change inside ()
-cib                     # change inside ()
-cab                     # change with ()
+ciw                     # changes inner word
+ci(                     # changes inside ()
+cib                     # changes inside ()
+cab                     # changes with ()
 ci[
-cit                     # change inner tag ( <bla>inner text</bla>
-ci{ = ciB               # change inner block
+cit                     # changes inner tag ( <bla>inner text</bla>
+ci{ = ciB               # changes inner block
 
+
+## DELETE ##
+# Deletions are stored in registers
+daw                     # deletes word under cursor with space 
+dw                      # deletes word from cursor position
+dip                     # deletes paragraph leaving empty line
+dap                     # deletes paragraph with empty line
+dd                      # deletes line 
+x                       # deletes char
 
 ## SEARCH FILE ##
-/{pattern}      # forward search entire file
-?{pattern}      # backward search entire file
-n               # next find
-N               # previous find
-*               # search for word under cursor
-#               # backwards search for word under cursor
+/{pattern}              # forward search entire file
+?{pattern}              # backward search entire file
+n                       # next find
+N                       # previous find
+*                       # searches for word under cursor
+#                       # backwards search for word under cursor
+:Set hls                # highlights results
+:set is                 # activates incremental search highlighting values
+d /bla                  # deletes from current position to first occurence of bla
+"5y /bla                # yanks from current position to first occuerence of bla into register 5
 
 
 ## SEARCH LINE ##
-f{char}         # forward search of character
-F{char}         # backward search of character
-t{char}         # forward search one char before
-T{char}         # backward search one char before
-;               # repeat search
-,               # backwards search
+f{char}                 # forward search of character
+F{char}                 # backward search of character
+t{char}                 # forward search one position before char
+T{char}                 # backward search one position before char
+;                       # repeat search
+,                       # backwards search
 
 
 ## SUBSTITUTION ##
@@ -39,4 +49,12 @@ T{char}         # backward search one char before
 :.,$s/old/new/g         # changes all from current line "." to end of file.
 :%s/old/new/g           # changes all lines "%".
 :/SearchPattern1/,/SearchPattern2/s/old/new/g    # make changes between search pattern.
+
+## MAKROS ##
+qa                      # start recording on register a
+qA                      # attach to register a
+@a                      # play register a
+@@                      # play last one used
+:[range]normal @register
+:2,8 normal @a          # apply register a from 2 to 8
 :s#/home/Documents/#/home/programming#  # subsitutes with /.
