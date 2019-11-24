@@ -1,4 +1,6 @@
+"""""""""""""""""""""""
 """" START Vundle Configuration
+"""""""""""""""""""""""
 filetype off                                    " required: disable file type for vundle
 set rtp+=~/.vim/bundle/Vundle.vim               " set the runtime path to include Vundle and initialize
 call vundle#begin()
@@ -12,6 +14,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'grailbio/bazel-compilation-database'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()                               " required
 filetype plugin indent on                       " required
@@ -19,7 +22,9 @@ filetype plugin indent on                       " required
 
 syntax on
 
+"""""""""""""""""""""""
 """ Settings
+"""""""""""""""""""""""
 set number                                      " show line numbers
 set ruler                                       " shows current line number on bottom right
 set tabstop=4
@@ -40,8 +45,11 @@ set nocompatible
 set lbr                                     " line breaks
 set ai                                      " auto intend
 set si                                      " smart intend (eg after braces)
+set autochdir                               " set current dir to file dir
 
+"""""""""""""""""""""""
 """ Variables
+"""""""""""""""""""""""
 let g:elite_mode=1                              " no arrow keys
 let mapleader=","                               " sets <leader> to <,>
 let g:syntastic_always_populate_loc_list = 1
@@ -49,13 +57,30 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"""""""""""""""""""""""
 """ Remaping
+"""""""""""""""""""""""
 inoremap jk <Esc>
 map <leader>w :w!<CR>
 map <C-n> :NERDTreeTabsToggle<CR>
 map <C-m> :TagbarToggle<CR>
+map <leader>n :call ToggleNerdTree()<CR>
+"map <leader>n :NERDTreeFind<CR>
 map <leader>f :FZF<CR>
 
+"""""""""""""""""""""""
 """ Colors
-colorscheme spacegray
+"""""""""""""""""""""""
+"colorscheme spacegray
+colorscheme gruvbox
 
+"""""""""""""""""""""""
+""" Functions
+"""""""""""""""""""""""
+function! ToggleNerdTree()
+    if exists("g:NERDTree") && g:NERDTree.IsOpen()
+        NERDTreeClose
+    else
+      NERDTreeFind
+    endif
+endfunction
